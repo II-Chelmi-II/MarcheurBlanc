@@ -1,15 +1,17 @@
-// File path: src/test/java/MainTest.java
+// File path: src/test/java/TestMarcheur.java
 import model.*;
 import org.junit.Test;
 import service.MarcheurService;
+
 import java.util.Random;
+
 import static org.junit.Assert.assertEquals;
 
 public class TestMarcheur {
 
     @Test
     public void testMarcheurService() {
-        // Initialisation des lieux
+
         Lieu hei = new Lieu("HEI");
         Lieu pullman = new Lieu("Pullman");
         Lieu balançoire = new Lieu("Balançoire");
@@ -19,7 +21,6 @@ public class TestMarcheur {
         Lieu boulevarDeLEurope = new Lieu("BoulevarDeLEurope");
         Lieu nexta = new Lieu("Nexta");
 
-        // Initialisation des rues
         Rue rue1 = new Rue(hei, pullman, "Andriatsihoarana");
         Rue rue2 = new Rue(pullman, balançoire, "Ranaivo");
         Rue rue3 = new Rue(balançoire, esti, "Unnamed");
@@ -29,7 +30,6 @@ public class TestMarcheur {
         Rue rue7 = new Rue(boulevarDeLEurope, esti, "Unnamed");
         Rue rue8 = new Rue(pullman, nexta, "Unnamed");
 
-        // Initialisation de la carte
         Carte carte = new Carte();
         carte.ajouterLieu(hei);
         carte.ajouterLieu(pullman);
@@ -48,16 +48,11 @@ public class TestMarcheur {
         carte.ajouterRue(rue7);
         carte.ajouterRue(rue8);
 
-        // Initialisation du marcheur
         MarcheurService marcheur = new MarcheurService(carte, hei);
-        marcheur.setRandom(new Random(0));  // Utiliser un seed pour rendre les tests reproductibles
+        marcheur.setRandom(new Random());
 
-        // Faire marcher le marcheur jusqu'à atteindre "ESTI"
-        while (!marcheur.getPositionActuelle().equals(esti)) {
-            marcheur.marcher();
-        }
+        marcheur.marcherVers(esti);
 
-        // Vérifier que le marcheur a atteint "ESTI"
         assertEquals(esti, marcheur.getPositionActuelle());
     }
 }
