@@ -1,4 +1,3 @@
-// File path: src/test/java/TestMarcheur.java
 import model.*;
 import org.junit.Test;
 import service.MarcheurService;
